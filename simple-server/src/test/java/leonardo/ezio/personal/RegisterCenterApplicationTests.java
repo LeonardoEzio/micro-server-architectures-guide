@@ -1,4 +1,4 @@
-package leonardo.ezio.personal.example;
+package leonardo.ezio.personal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

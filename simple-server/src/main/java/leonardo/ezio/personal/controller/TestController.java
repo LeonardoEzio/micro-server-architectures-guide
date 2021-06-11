@@ -1,5 +1,8 @@
-package leonardo.ezio.personal.example.controller;
+package leonardo.ezio.personal.controller;
 
+
+import leonardo.ezio.personal.stater.wrapper.MyJsonWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("test")
 public class TestController {
 
+    @Autowired(required = false)
+    private MyJsonWrapper jsonWrapper;
     /**
     * @description
     *
@@ -25,7 +30,11 @@ public class TestController {
     @GetMapping("/one")
     @ResponseBody
     public String testOne(){
-        return "test success by nacos !!";
+        if (jsonWrapper != null){
+            return jsonWrapper.wrapper("test success by nacos !!");
+        }else {
+            return "test success by nacos !!";
+        }
     }
 
 }
