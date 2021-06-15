@@ -3,9 +3,9 @@ package leonardo.ezio.personal.controller;
 
 import leonardo.ezio.personal.stater.wrapper.MyJsonWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,14 +27,22 @@ public class TestController {
     * @date : 2021/6/2 17:35
     *
     **/
+
+    @Value("${server.port}")
+    private String port;
+
     @GetMapping("/one")
-    @ResponseBody
     public String testOne(){
         if (jsonWrapper != null){
             return jsonWrapper.wrapper("test success by nacos !!");
         }else {
             return "test success by nacos !!";
         }
+    }
+
+    @GetMapping("loadBalance")
+    public String loadBalance(){
+        return "response from " + port;
     }
 
 }
