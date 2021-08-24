@@ -11,6 +11,7 @@
     <artifactId>boot-demo</artifactId>
     <version>1.0.0</version>
     <name>boot-demo</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
     <dependencies>
