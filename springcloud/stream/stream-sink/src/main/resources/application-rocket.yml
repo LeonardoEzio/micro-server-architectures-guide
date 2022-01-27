@@ -1,0 +1,32 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 10.1.55.125:9876
+      bindings:
+        # 通道名要和接口中的保持一致
+        input:
+          # 通道目的地, alarmTp
+          destination:  testTp
+          # 如果用了RocketMQ，一定要设置group
+          # 如果用了其他的MQ,可以不设置
+          group: testTp-g01
+          content-type: application/json
+          binder: rocketmq
+        # 通道名要和接口中的保持一致
+        alarmInput:
+          # 通道目的地, alarmTp
+          destination:  alarmTp
+          group: alarmTp-g01
+          content-type: application/json
+          binder: rocketmq
+        billInput:
+          # 通道目的地, billTp
+          destination:  billTp
+          group: billTp-g01
+          content-type: application/json
+          binder: rocketmq

@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 10.1.55.125:9876
+      bindings:
+        output:
+          destination: streamTestTp
+          content-type: application/json
+          binder: rocketmq
+        # 通道名要和接口中的保持一致
+        alarmOutput:
+          # 通道目的地, alarmTp
+          destination:  alarmTp
+          content-type: application/json
+          binder: rocketmq
+        billOutput:
+          # 通道目的地, billTp
+          destination:  billTp
+          content-type: application/json
+          binder: rocketmq
