@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: streamTestTp
+          content-type: application/json
+      kafka:
+        binder:
+          brokers: 10.8.160.110

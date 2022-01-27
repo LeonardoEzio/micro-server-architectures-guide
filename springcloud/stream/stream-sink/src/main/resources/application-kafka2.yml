@@ -1,0 +1,29 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    stream:
+      # 定义binder kafkaBinder
+      binders:
+        kafkaBinder:
+          type: kafka
+          environment:
+            spring:
+              kafka:
+                bootstrap-servers: 10.8.160.110:9092
+      # 绑定通道
+      bindings:
+        # 通道名要和接口中的保持一致
+        alarmInput:
+          # 通道目的地, alarmTp
+          destination:  alarmTp
+          content-type: application/json
+          # 指定binder
+          binder: kafkaBinder
+        billInput:
+          # 通道目的地, billTp
+          destination:  billTp
+          content-type: application/json
+          # 指定binder
+          binder: kafkaBinder
