@@ -4,15 +4,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>leonardo.ezio.personal</groupId>
-        <artifactId>springcloud</artifactId>
+        <artifactId>micro-cloud-architecture</artifactId>
         <version>1.0.0</version>
     </parent>
+
     <groupId>leonardo.ezio.personal</groupId>
     <artifactId>boot-demo</artifactId>
     <version>1.0.0</version>
+
     <name>boot-demo</name>
     <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+    </properties>
 
     <dependencies>
 
@@ -31,6 +37,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>leonardo.ezio.personal</groupId>
+            <artifactId>my-starter</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

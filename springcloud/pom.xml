@@ -13,7 +13,6 @@
 	<version>1.0.0</version>
 
 	<modules>
-		<module>boot-demo</module>
 		<module>stream</module>
 	</modules>
 

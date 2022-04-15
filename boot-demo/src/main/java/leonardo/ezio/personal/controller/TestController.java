@@ -16,11 +16,6 @@ import java.io.InputStreamReader;
 @RestController
 public class TestController {
 
-    @RequestMapping("test")
-    public String test(){
-        return "success !!!";
-    }
-
     @RequestMapping(value = "/testTwo",consumes = MediaType.TEXT_HTML_VALUE)
     public String testTwo(HttpServletRequest request)throws Exception{
         StringBuffer sb = new StringBuffer() ;
