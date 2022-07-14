@@ -7,8 +7,8 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
-    <name>micro-cloud-architecture</name>
-    <description>components for micro cloud architecture simpler demo</description>
+    <name>micro-server-architecture-guide</name>
+    <description>some simpler demo of micro server architecture components </description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -19,8 +19,9 @@
     <modules>
         <module>boot-demo</module>
         <module>my-starter</module>
-        <module>springcloud</module>
-        <module>springcloud-alibaba</module>
+        <module>spring-cloud-alibaba</module>
+        <module>spring-cloud-netflix</module>
+        <module>spring-security</module>
     </modules>
 
 </project>
