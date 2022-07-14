@@ -11,8 +11,9 @@
 
     <artifactId>spring-security</artifactId>
     <packaging>pom</packaging>
+
     <modules>
-        <module>auth-server</module>
+        <module>basic</module>
     </modules>
 
     <properties>
