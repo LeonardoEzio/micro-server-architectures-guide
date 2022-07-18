@@ -1,2 +1,8 @@
 server:
   port: 8080
+
+spring:
+  security:
+    user:
+      name: leonardo
+      password: leonardoezio
