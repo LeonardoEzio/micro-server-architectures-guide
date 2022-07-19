@@ -6,3 +6,11 @@ spring:
     user:
       name: leonardo
       password: leonardoezio
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    servlet:
+      content-type: text/html
+    encoding: utf-8
