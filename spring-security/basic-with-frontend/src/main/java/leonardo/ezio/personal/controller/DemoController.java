@@ -1,8 +1,8 @@
 package leonardo.ezio.personal.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Description :
@@ -17,7 +17,8 @@ public class DemoController {
         return "index";
     }
 
-    @GetMapping("hello")
+    @ResponseBody
+    @RequestMapping("hello")
     public String hello(){
         return "Hello Spring Security";
     }

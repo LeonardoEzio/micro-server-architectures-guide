@@ -5,6 +5,7 @@ import leonardo.ezio.personal.handler.CustomerAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -20,6 +21,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
  * what is the difference between HttpSecurity and WebSecurity
  */
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -27,6 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //静态资源被拦截问题
         web.ignoring().antMatchers("/css/**", "/images/**", "/js/**", "/code/**");
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -50,7 +53,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.cors().configurationSource(corsConfigurationSource());
     }
-
 
     /**
      * 跨域配置信息源
