@@ -1,0 +1,15 @@
+[
+  {
+    "id": "user-center",
+    "predicates": [
+      {
+        "name": "Path",
+        "args": {
+          "pattern": "/user/**"
+        }
+      }
+    ],
+    "uri": "lb://user-center-a",
+    "filters": []
+  }
+]

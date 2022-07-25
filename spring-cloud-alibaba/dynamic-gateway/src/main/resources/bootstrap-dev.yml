@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 10.8.160.110:8848
+        enabled: true
+        username: nacos
+        password: nacos
+        file-extension: yaml
+        namespace: 91cb002f-fa4f-4e4d-a0c3-2bad50ee8f9c
+      discovery:
+        server-addr: 10.8.160.110:8848
+        enabled: true
+        username: nacos
+        password: nacos
+        namespace: 91cb002f-fa4f-4e4d-a0c3-2bad50ee8f9c
