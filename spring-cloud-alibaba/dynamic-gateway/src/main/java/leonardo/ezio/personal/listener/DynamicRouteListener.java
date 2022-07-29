@@ -46,6 +46,13 @@ public class DynamicRouteListener implements InitializingBean {
             properties.put("serverAddr", dynamicRouteConfig.getAddress());
             properties.put("namespace", dynamicRouteConfig.getNamespace());
             ConfigService configService = NacosFactory.createConfigService(properties);
+
+            //初始化路由配置
+            String initConfig = configService.getConfig(dynamicRouteConfig.getDataId(), dynamicRouteConfig.getGroupId(), dynamicRouteConfig.getTimeout());
+            List<RouteDefinition> routeDefinitions = JSONObject.parseArray(initConfig, RouteDefinition.class);
+            routeDefinitions.forEach(dynamicRouteService::add);
+
+            //监听路由变更
             configService.addListener(dynamicRouteConfig.getDataId(), dynamicRouteConfig.getGroupId(), new Listener() {
                 @Override
                 public Executor getExecutor() {
