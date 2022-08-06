@@ -12,10 +12,10 @@ import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClients;
  * @Date: 2022-07-25 11:09
  */
 /**
- *  * 指定所使用的负载均衡策略，defaultConfiguration代表对所有服务生效
- *  * @LoadBalancerClients(defaultConfiguration = GrayLoadBalancerConfig.class)
- *  * 指定某个服务所使用的负载均衡策略
- *  * @LoadBalancerClient(name = ,configuration = )
+ * 指定所使用的负载均衡策略，defaultConfiguration代表对所有服务生效
+ * @LoadBalancerClients(defaultConfiguration = GrayLoadBalancerConfig.class)
+ * 指定某个服务所使用的负载均衡策略
+ * @LoadBalancerClient(name = ,configuration = )
  * */
 @EnableDiscoveryClient
 @SpringBootApplication
