@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
@@ -31,6 +31,8 @@ public class GrayRoundRobinLoadBalancer implements ReactorServiceInstanceLoadBal
     private ObjectProvider<ServiceInstanceListSupplier> serviceInstanceListSupplierProvider;
 
     private final String serviceId;
+
+    private static final AtomicInteger position = new AtomicInteger(0);
 
     public GrayRoundRobinLoadBalancer(ObjectProvider<ServiceInstanceListSupplier> serviceInstanceListSupplierProvider, String serviceId) {
         this.serviceInstanceListSupplierProvider = serviceInstanceListSupplierProvider;
@@ -64,9 +66,8 @@ public class GrayRoundRobinLoadBalancer implements ReactorServiceInstanceLoadBal
             log.warn("No servers available for service: " + this.serviceId);
             return new EmptyResponse();
         } else {
-            int size = instances.size();
-            Random random = new Random();
-            ServiceInstance instance = (ServiceInstance)instances.get(random.nextInt(size));
+            int index = position.getAndIncrement() % instances.size();
+            ServiceInstance instance = (ServiceInstance)instances.get(index);
             return new DefaultResponse(instance);
         }
     }
