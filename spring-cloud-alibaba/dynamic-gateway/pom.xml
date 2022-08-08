@@ -38,19 +38,6 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.cloud</groupId>
-                    <artifactId>spring-cloud-netflix-ribbon</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- 引入spring-cloud-loadbalancer需要在 spring-cloud-starter-alibaba-nacos-discovery中排除ribbon依赖 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-            <version>2.2.1.RELEASE</version>
         </dependency>
 
         <dependency>
