@@ -16,6 +16,7 @@
     <modules>
         <module>dynamic-gateway</module>
         <module>user-center</module>
+        <module>gray-router</module>
     </modules>
 
     <properties>
