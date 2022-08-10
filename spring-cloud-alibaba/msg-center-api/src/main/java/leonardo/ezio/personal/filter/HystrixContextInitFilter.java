@@ -1,19 +1,17 @@
 package leonardo.ezio.personal.filter;
 
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import java.io.IOException;
 
 /**
- * @Description :
+ * @Description : hystrix上下文初始化报错时使用
  * @Author : LeonardoEzio
  * @Date: 2022-08-10 11:56
  */
-@Component
-@ServletComponentScan
+//@Component
+//@ServletComponentScan
 public class HystrixContextInitFilter implements Filter {
 
     @Override

@@ -46,11 +46,11 @@
             <version>1.2.83</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>leonardo.ezio.personal</groupId>-->
-<!--            <artifactId>router-core</artifactId>-->
-<!--            <version>1.0.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>leonardo.ezio.personal</groupId>
+            <artifactId>router-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
 

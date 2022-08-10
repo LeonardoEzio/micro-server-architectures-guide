@@ -47,11 +47,11 @@
             </exclusions>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>leonardo.ezio.personal</groupId>-->
-<!--            <artifactId>client-core</artifactId>-->
-<!--            <version>1.0.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>leonardo.ezio.personal</groupId>
+            <artifactId>client-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
 
