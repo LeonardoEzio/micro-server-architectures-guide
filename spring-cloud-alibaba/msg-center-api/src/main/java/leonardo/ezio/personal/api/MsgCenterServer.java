@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @Author : LeonardoEzio
  * @Date: 2022-08-09 17:38
  */
-@FeignClient(value = "msg-center-a",path = "/msg",fallbackFactory = MsgCenterServerFallBackFactory.class, configuration = OpenFeignRequestInterceptor.class)
+@FeignClient(name = "msg-center-a",path = "/msg",fallbackFactory = MsgCenterServerFallBackFactory.class, configuration = OpenFeignRequestInterceptor.class)
 public interface MsgCenterServer {
 
     /**

@@ -12,3 +12,17 @@ feign:
     enabled: true
   okhttp:
     enabled: true
+
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 5000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
