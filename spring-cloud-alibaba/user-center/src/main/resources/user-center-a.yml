@@ -1,3 +1,14 @@
 server:
   servlet:
     context-path: /user
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 15000
+        readTimeout: 15000
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: true

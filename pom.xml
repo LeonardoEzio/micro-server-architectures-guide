@@ -22,7 +22,6 @@
         <module>spring-cloud-alibaba</module>
         <module>spring-cloud-netflix</module>
         <module>spring-security</module>
-        <module>sca-gray-router</module>
     </modules>
 
 </project>

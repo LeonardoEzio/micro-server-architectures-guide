@@ -17,6 +17,8 @@
         <module>dynamic-gateway</module>
         <module>user-center</module>
         <module>gray-router</module>
+        <module>msg-center-api</module>
+        <module>msg-center</module>
     </modules>
 
     <properties>

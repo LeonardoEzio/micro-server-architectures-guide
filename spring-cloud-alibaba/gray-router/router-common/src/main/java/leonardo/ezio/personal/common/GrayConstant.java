@@ -7,7 +7,7 @@ package leonardo.ezio.personal.common;
  */
 public interface GrayConstant {
 
-    String GRAY_HEAD = "grayVersion";
+    String GRAY_HEAD = "gray-version";
 
     String SERVER_VERSION = "version";
 
