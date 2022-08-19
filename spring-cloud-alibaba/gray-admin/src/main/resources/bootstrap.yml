@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: gray-route-admin
+
+  cloud:
+    nacos:
+      config:
+        enabled: false
+      discovery:
+        enabled: false
+

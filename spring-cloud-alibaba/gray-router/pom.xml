@@ -14,7 +14,7 @@
 
     <packaging>pom</packaging>
     <modules>
-        <module>router-core</module>
+        <module>server-core</module>
         <module>client-core</module>
         <module>router-common</module>
     </modules>
