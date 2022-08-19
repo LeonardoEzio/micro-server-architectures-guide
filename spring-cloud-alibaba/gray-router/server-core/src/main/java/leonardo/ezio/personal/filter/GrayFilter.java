@@ -1,6 +1,5 @@
 package leonardo.ezio.personal.filter;
 
-import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import leonardo.ezio.personal.common.GrayConstant;
@@ -28,12 +27,7 @@ public class GrayFilter implements GlobalFilter, Ordered {
 
     private static final Log log = LogFactory.getLog(GrayFilter.class);
 
-    private static final HazelcastInstance HAZELCAST_INSTANCE;
-
-    static {
-        System.out.println("static code init ====================");
-        HAZELCAST_INSTANCE = Hazelcast.newHazelcastInstance(new Config("gray"));
-    }
+    private static final HazelcastInstance HAZELCAST_INSTANCE = Hazelcast.newHazelcastInstance();
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -44,7 +38,7 @@ public class GrayFilter implements GlobalFilter, Ordered {
         boolean needGrayRoute = false;
         String targetVersion = "";
         for (GrayRule rule : rules) {
-            if (rule.getMatchRule().equals("username")){
+            if (rule.getRouteKey().equals("username")){
                 if (rule.getMatchRule().equals("equals") && authorization.equals(rule.getMatchValue())){
                     needGrayRoute = true;
                     targetVersion = rule.getTargetVersion();

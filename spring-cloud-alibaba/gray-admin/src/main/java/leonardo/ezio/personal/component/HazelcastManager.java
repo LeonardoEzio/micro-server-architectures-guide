@@ -1,6 +1,5 @@
 package leonardo.ezio.personal.component;
 
-import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import leonardo.ezio.personal.common.GrayConstant;
@@ -20,8 +19,7 @@ public class HazelcastManager {
     private static final HazelcastInstance HAZELCAST_INSTANCE;
 
     static {
-        System.out.println("static method init *****************************");
-        HAZELCAST_INSTANCE = Hazelcast.newHazelcastInstance(new Config("gray"));
+        HAZELCAST_INSTANCE = Hazelcast.newHazelcastInstance();
     }
 
     public static void addRule(GrayRuleDto grayRuleDto){
