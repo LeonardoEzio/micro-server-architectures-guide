@@ -1,7 +1,7 @@
 package leonardo.ezio.personal.config;
 
 import com.netflix.loadbalancer.IRule;
-import leonardo.ezio.personal.rule.RibbonGrayRule;
+import leonardo.ezio.personal.loadbalance.RibbonGrayRule;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;

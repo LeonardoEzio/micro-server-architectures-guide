@@ -1,4 +1,4 @@
-package leonardo.ezio.personal.rule;
+package leonardo.ezio.personal.loadbalance;
 
 
 import com.alibaba.cloud.nacos.ribbon.NacosServer;

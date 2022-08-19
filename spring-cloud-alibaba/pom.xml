@@ -19,6 +19,7 @@
         <module>gray-router</module>
         <module>msg-center-api</module>
         <module>msg-center</module>
+        <module>gray-admin</module>
     </modules>
 
     <properties>
