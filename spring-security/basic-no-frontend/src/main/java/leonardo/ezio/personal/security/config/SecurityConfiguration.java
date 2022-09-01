@@ -1,14 +1,15 @@
-package leonardo.ezio.personal.config;
+package leonardo.ezio.personal.security.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -27,6 +28,9 @@ import java.io.PrintWriter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DaoAuthenticationProvider authenticationProvider;
 
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
@@ -130,11 +134,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //密码加密方式1 NoOpPasswordEncoder
-        auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .withUser("user1").password("password1").roles("ADMIN");
+//        auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
+//                .withUser("user1").password("password1").roles("ADMIN");
         //密码加密方式2 {noop}password1
 //        auth.inMemoryAuthentication()
 //                .withUser("user1").password("{noop}password1").roles("ADMIN");
+        //基于数据库的认证
+        auth.authenticationProvider(authenticationProvider);
     }
 
     @Bean
