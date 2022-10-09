@@ -1,37 +1,49 @@
-package leonardo.ezio.personal.listener;
+package leonardo.ezio.personal.web.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ReflectUtil;
 import com.alibaba.cloud.stream.binder.rocketmq.consuming.RocketMQListenerBindingContainer;
 import com.alibaba.cloud.stream.binder.rocketmq.integration.RocketMQInboundChannelAdapter;
+import leonardo.ezio.personal.common.ApplicationContextHolder;
 import leonardo.ezio.personal.common.ThreadPoolExecutorHolder;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.impl.consumer.ConsumeMessageConcurrentlyService;
 import org.apache.rocketmq.client.impl.consumer.DefaultMQPushConsumerImpl;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.binder.Binding;
 import org.springframework.cloud.stream.binder.DefaultBinding;
 import org.springframework.cloud.stream.binding.InputBindingLifecycle;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @Description : 获取sink组件 底层inputBinding线程池
+ * @Description :
  * @Author : LeonardoEzio
- * @Date: 2022-10-08 18:29
+ * @Date: 2022-10-09 11:29
  */
-@Component
-public class SinkApplicationListener implements ApplicationListener<ApplicationStartedEvent> {
+@RestController
+@RequestMapping("executorMonitor")
+public class SinkExecutorMonitorController {
 
-    @Override
-    public void onApplicationEvent(ApplicationStartedEvent applicationStartedEvent) {
-        ConfigurableApplicationContext applicationContext = applicationStartedEvent.getApplicationContext();
-        InputBindingLifecycle bindingLifecycle = applicationContext.getBean(InputBindingLifecycle.class);
+    private Logger log = LoggerFactory.getLogger(SinkExecutorMonitorController.class);
+
+    @PostMapping("update/{key}")
+    public String updateExecutor(@PathVariable String key){
+        ThreadPoolExecutor threadPoolExecutor = ThreadPoolExecutorHolder.get(key);
+        log.info("Thread Pool Executor Config Before Update !! core size : {} , max size : {}",threadPoolExecutor.getCorePoolSize(),threadPoolExecutor.getMaximumPoolSize());
+        threadPoolExecutor.setCorePoolSize(Runtime.getRuntime().availableProcessors());
+        threadPoolExecutor.setMaximumPoolSize(Runtime.getRuntime().availableProcessors()*2);
+        log.info("Thread Pool Executor Config After Update !! core size : {} , max size : {}",threadPoolExecutor.getCorePoolSize(),threadPoolExecutor.getMaximumPoolSize());
+        return "update success";
+    }
+
+    @GetMapping("check")
+    public String checkExecutor(){
+        InputBindingLifecycle bindingLifecycle = ApplicationContextHolder.getBean(InputBindingLifecycle.class);
         Collection<Binding<Object>> inputBindings = Optional.ofNullable(ReflectUtil.getFieldValue(bindingLifecycle, "inputBindings")).map(each -> (Collection<Binding<Object>>) each).orElse(null);
         if (CollectionUtil.isEmpty(inputBindings)) {
             System.out.println("inputBidings is empty");
@@ -45,11 +57,11 @@ public class SinkApplicationListener implements ApplicationListener<ApplicationS
                 DefaultMQPushConsumerImpl defaultMQPushConsumerImpl = consumer.getDefaultMQPushConsumerImpl();
                 ConsumeMessageConcurrentlyService consumeMessageService = (ConsumeMessageConcurrentlyService) defaultMQPushConsumerImpl.getConsumeMessageService();
                 ThreadPoolExecutor consumeExecutor = (ThreadPoolExecutor) ReflectUtil.getFieldValue(consumeMessageService, "consumeExecutor");
-                String key = each.getName();
-                ThreadPoolExecutorHolder.put(key,consumeExecutor);
+                log.info("binding : {} thread pool config !!! core size : {} ; max size : {} ",each.getName(),consumeExecutor.getCorePoolSize(),consumeExecutor.getMaximumPoolSize());
             }
         } catch (Exception ex) {
 
         }
+        return "success";
     }
 }
