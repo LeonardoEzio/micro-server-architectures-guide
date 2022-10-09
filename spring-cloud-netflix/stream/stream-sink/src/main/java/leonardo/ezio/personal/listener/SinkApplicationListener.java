@@ -37,7 +37,6 @@ public class SinkApplicationListener implements ApplicationListener<ApplicationS
         }
         try {
             for (Binding<Object> each : inputBindings) {
-                String bindingName = each.getName();
                 DefaultBinding defaultBinding = (DefaultBinding) each;
                 RocketMQInboundChannelAdapter lifecycle = (RocketMQInboundChannelAdapter) ReflectUtil.getFieldValue(defaultBinding, "lifecycle");
                 RocketMQListenerBindingContainer rocketMQListenerContainer = (RocketMQListenerBindingContainer) ReflectUtil.getFieldValue(lifecycle, "rocketMQListenerContainer");
